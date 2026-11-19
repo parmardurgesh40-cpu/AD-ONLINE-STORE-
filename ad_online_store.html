@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>AD Online Store | हर चीज़ एक जगह</title>
+<style>
+:root{--ink:#111827;--muted:#64748b;--brand:#6d28d9;--brand2:#9333ea;--bg:#f8fafc;--line:#e5e7eb}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:inherit;text-decoration:none}.top{background:#111827;color:#fff;text-align:center;padding:8px 12px;font-size:12px}
+header{background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 12px #0f172a0d}
+.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:14px}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.7px;white-space:nowrap}.logo span{color:var(--brand)}
+.search{flex:1;display:flex;background:#f1f5f9;border-radius:12px;padding:0 12px;align-items:center}.search input{width:100%;border:0;background:transparent;padding:12px 8px;outline:0;font-size:14px}
+.cartbtn{border:0;background:var(--brand);color:#fff;border-radius:12px;padding:11px 14px;font-weight:700;cursor:pointer;white-space:nowrap}
+.wrap{max-width:1100px;margin:auto;padding:0 18px}
+.hero{margin:22px auto 18px;border-radius:22px;padding:30px 26px;background:linear-gradient(120deg,#25104e,#6d28d9 60%,#c084fc);color:white;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden}
+.hero h1{font-size:clamp(27px,5vw,44px);line-height:1.12;margin:0 0 10px}.hero p{margin:0 0 18px;color:#ede9fe}.hero .pill{display:inline-block;background:#fff;color:#5b21b6;padding:10px 15px;border-radius:999px;font-weight:800;font-size:13px}.hero-art{font-size:clamp(65px,13vw,120px);filter:drop-shadow(0 12px 14px #160a3b66)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 24px}.feature{background:#fff;border:1px solid var(--line);padding:13px;border-radius:14px;font-size:13px;font-weight:700}.feature small{display:block;color:var(--muted);font-weight:400;margin-top:3px}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:24px 0 13px}.sectionhead h2{font-size:21px;margin:0}.sectionhead p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.categories{display:flex;gap:9px;overflow:auto;padding:2px 0 12px;scrollbar-width:none}.categories button{white-space:nowrap;border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:650;color:#334155}.categories button.active{background:#ede9fe;border-color:#c4b5fd;color:#5b21b6}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:28px}
+.card{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:145px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#f5f3ff,#fce7f3)}.card:nth-child(3n+2) .photo{background:linear-gradient(135deg,#ecfeff,#dbeafe)}.card:nth-child(3n) .photo{background:linear-gradient(135deg,#fef3c7,#ffedd5)}
+.info{padding:12px;display:flex;flex-direction:column;flex:1}.tag{font-size:10px;color:var(--brand);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.info h3{font-size:14px;margin:5px 0 8px;line-height:1.35}.price{font-size:17px;font-weight:850;margin-top:auto}.old{font-size:11px;color:#94a3b8;text-decoration:line-through;margin-left:5px;font-weight:400}.add{margin-top:10px;border:0;background:#111827;color:white;padding:10px;border-radius:10px;font-weight:750;cursor:pointer}.add:active,.cartbtn:active{transform:scale(.98)}
+.note{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 25px}.footer{background:#111827;color:#e2e8f0;padding:24px 18px;text-align:center;font-size:13px}.footer strong{color:#fff}
+.overlay{display:none;position:fixed;inset:0;background:#0f172a88;z-index:10;justify-content:flex-end}.overlay.show{display:flex}.drawer{width:min(430px,100%);height:100%;background:#fff;padding:20px;overflow:auto;box-shadow:-10px 0 30px #0002}.drawhead{display:flex;justify-content:space-between;align-items:center}.drawhead h2{margin:0}.close{border:0;background:#f1f5f9;border-radius:9px;padding:8px 12px;font-size:18px;cursor:pointer}.cartline{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#f8fafc;border-radius:7px;width:26px;height:26px;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:18px;font-weight:850;padding:18px 0}.checkout{width:100%;background:#16a34a;color:#fff;border:0;padding:14px;border-radius:12px;font-size:15px;font-weight:850;cursor:pointer}.empty{text-align:center;color:var(--muted);padding:45px 10px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:125px;font-size:52px}.nav{gap:8px;padding:11px 12px}.logo{font-size:18px}.cartbtn{padding:10px 11px;font-size:12px}.wrap{padding:0 12px}.hero{margin-top:14px;padding:23px 18px}.features{gap:7px}.feature{padding:10px 8px;font-size:11px}.feature small{font-size:10px}}
+@media(max-width:380px){.logo{font-size:16px}.search input{width:80px}.hero-art{font-size:55px}}
+</style>
+</head>
+<body>
+<div class="top">✨ AD Online Store में आपका स्वागत है — हर चीज़ एक जगह</div>
+<header><div class="nav">
+  <a class="logo" href="#"><span>AD</span> ONLINE STORE</a>
+  <label class="search" aria-label="प्रोडक्ट खोजें">🔎 <input id="search" placeholder="सामान खोजें..." oninput="renderProducts()"></label>
+  <button class="cartbtn" onclick="openCart()">🛒 Cart <span id="count">0</span></button>
+</div></header>
+<main class="wrap">
+<section class="hero">
+ <div><h1>Shopping अब<br>और भी आसान!</h1><p>आपकी पसंद का सामान, एक ही जगह।</p><span class="pill">आज ही ऑर्डर करें →</span></div>
+ <div class="hero-art">🛍️</div>
+</section>
+<div class="features">
+ <div class="feature">🚚 आसान ऑर्डर<small>WhatsApp से सीधे संपर्क</small></div>
+ <div class="feature">💬 सीधी सहायता<small>ऑर्डर से पहले जानकारी लें</small></div>
+ <div class="feature">🛒 कई कैटेगरी<small>अपनी पसंद चुनें</small></div>
+</div>
+<div class="sectionhead"><div><h2>हमारे प्रोडक्ट</h2><p>पसंद का सामान चुनें और कार्ट में जोड़ें</p></div></div>
+<div class="categories" id="categories"></div>
+<div class="grid" id="products"></div>
+<p class="note">नोट: अभी दिखाए गए प्रोडक्ट, फोटो-चिह्न और कीमतें डेमो के लिए हैं। वास्तविक बिक्री शुरू करने से पहले इन्हें अपने असली सामान, फोटो, सही कीमत और उपलब्धता से बदलें। भुगतान और डिलीवरी की पुष्टि WhatsApp पर करें।</p>
+</main>
+<footer class="footer"><strong>AD ONLINE STORE</strong><br>ऑर्डर और जानकारी के लिए WhatsApp करें<br><span>WhatsApp: 9316581726</span><br><br>© <span id="year"></span> AD Online Store</footer>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer">
+ <div class="drawhead"><h2>आपका Cart</h2><button class="close" onclick="closeCart()">✕</button></div>
+ <div id="cartItems"></div><div class="total"><span>कुल राशि</span><span id="total">₹0</span></div>
+ <button class="checkout" onclick="checkout()">WhatsApp पर ऑर्डर भेजें</button>
+ <p class="note">ऑर्डर भेजने के बाद दुकान से कीमत, उपलब्धता, डिलीवरी और पेमेंट की पुष्टि कर लें।</p>
+</aside></div>
+<script>
+const WA='919316581726';
+const products=[
+{id:1,name:'स्टाइलिश टी-शर्ट',cat:'कपड़े',price:299,old:499,emoji:'👕'},
+{id:2,name:'फैशन बैकपैक',cat:'बैग',price:599,old:799,emoji:'🎒'},
+{id:3,name:'वायरलेस ईयरबड्स',cat:'इलेक्ट्रॉनिक्स',price:799,old:1199,emoji:'🎧'},
+{id:4,name:'स्पोर्ट्स शूज़',cat:'जूते',price:899,old:1299,emoji:'👟'},
+{id:5,name:'कलाई घड़ी',cat:'फैशन',price:499,old:699,emoji:'⌚'},
+{id:6,name:'सनग्लासेस',cat:'फैशन',price:249,old:399,emoji:'🕶️'},
+{id:7,name:'पानी की बोतल',cat:'होम',price:199,old:299,emoji:'🥤'},
+{id:8,name:'स्मार्टफोन कवर',cat:'इलेक्ट्रॉनिक्स',price:149,old:249,emoji:'📱'}
+];
+let selected='सभी',cart={};
+const cats=['सभी',...new Set(products.map(p=>p.cat))];
+function money(n){return '₹'+n.toLocaleString('en-IN')}
+function renderCats(){document.getElementById('categories').innerHTML=cats.map(c=>`<button class="${selected===c?'active':''}" onclick="selected='${c}';renderCats();renderProducts()">${c==='सभी'?'✨ सभी':c}</button>`).join('')}
+function renderProducts(){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ const list=products.filter(p=>(selected==='सभी'||p.cat===selected)&&(p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ document.getElementById('products').innerHTML=list.length?list.map(p=>`<article class="card"><div class="photo">${p.emoji}</div><div class="info"><span class="tag">${p.cat}</span><h3>${p.name}</h3><div class="price">${money(p.price)} <span class="old">${money(p.old)}</span></div><button class="add" onclick="add(${p.id})">＋ कार्ट में जोड़ें</button></div></article>`).join(''):'<p>कोई सामान नहीं मिला।</p>';
+}
+function add(id){cart[id]=(cart[id]||0)+1;updateCart();openCart()}
+function updateCart(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);
+ document.getElementById('count').textContent=entries.reduce((s,[id,q])=>s+q,0);
+ document.getElementById('cartItems').innerHTML=entries.length?entries.map(([id,q])=>{let p=products.find(x=>x.id==id);return `<div class="cartline"><div><strong>${p.name}</strong><br>${money(p.price)} × ${q}</div><div class="qty"><button onclick="change(${id},-1)">−</button>${q}<button onclick="change(${id},1)">+</button></div></div>`}).join(''):'<div class="empty">🛒<br>आपका Cart अभी खाली है।<br>पहले कोई प्रोडक्ट जोड़ें।</div>';
+ let total=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);document.getElementById('total').textContent=money(total);
+}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCart()}
+function openCart(){document.getElementById('overlay').classList.add('show')}
+function closeCart(){document.getElementById('overlay').classList.remove('show')}
+function checkout(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);if(!entries.length){alert('पहले Cart में सामान जोड़ें।');return}
+ let lines=entries.map(([id,q])=>{let p=products.find(x=>x.id==id);return `• ${p.name} — ${q} × ${money(p.price)} = ${money(p.price*q)}`});
+ let total=entries.reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);
+ let msg=`नमस्ते AD Online Store! मुझे ये सामान ऑर्डर करना है:\n\n${lines.join('\n')}\n\nकुल (डेमो कीमत): ${money(total)}\n\nकृपया उपलब्धता, अंतिम कीमत और डिलीवरी की जानकारी दें।`;
+ window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+document.getElementById('year').textContent=new Date().getFullYear();renderCats();renderProducts();updateCart();
+</script>
+</body></html>
